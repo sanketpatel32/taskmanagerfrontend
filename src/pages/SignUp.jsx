@@ -54,7 +54,7 @@ export default function SignUp() {
           label="Email"
           type="email"
           name="email"
-          inputRef={emailRef}
+          ref={emailRef} // ✅ use ref instead of inputRef
           placeholder="you@example.com"
           required
         />
@@ -64,7 +64,7 @@ export default function SignUp() {
           label="Password"
           type="password"
           name="password"
-          inputRef={passwordRef}
+          ref={passwordRef} // ✅ use ref instead of inputRef
           placeholder="At least 6 characters"
           required
           minLength={6}

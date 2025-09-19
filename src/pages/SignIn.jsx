@@ -8,33 +8,27 @@ import AuthLayout from "../components/AuthLayout";
 export default function SignIn() {
   const navigate = useNavigate();
 
-  // --- useRef for form fields ---
-  // Instead of keeping input values in state, we just read them on submit
+  // Refs for inputs
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  // --- State for UI feedback ---
+  // State for loading & error handling
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setLoading(true);
 
     try {
-      // Grab current values directly from refs
+      // Get values directly from refs
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
 
-      // Call backend API to sign in
       const res = await signin(email, password);
-
-      // Save JWT token to localStorage
       await saveToken(res.token);
 
-      // Redirect to task list
       navigate("/tasks", { replace: true });
     } catch (err) {
       setError(err.response?.data?.error || "Invalid login. Please try again.");
@@ -48,22 +42,20 @@ export default function SignIn() {
       <ErrorMessage message={error} />
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Email input (using ref) */}
         <FormInput
           label="Email"
           type="email"
           name="email"
-          inputRef={emailRef} // ✅ pass ref to custom FormInput
+          ref={emailRef} // ✅ now works
           placeholder="you@example.com"
           required
         />
 
-        {/* Password input (using ref) */}
         <FormInput
           label="Password"
           type="password"
           name="password"
-          inputRef={passwordRef} // ✅ pass ref to custom FormInput
+          ref={passwordRef} // ✅ now works
           placeholder="Your password"
           required
         />
