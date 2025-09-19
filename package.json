@@ -34,5 +34,18 @@
     "jsdom": "^27.0.0",
     "vite": "^7.1.6",
     "vitest": "^3.2.4"
-  }
+  },
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanketpatel32/taskmanagerfrontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanketpatel32/taskmanagerfrontend/issues"
+  },
+  "homepage": "https://github.com/sanketpatel32/taskmanagerfrontend#readme"
 }
