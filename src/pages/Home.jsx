@@ -1,8 +1,10 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Home() {
+  // Check if user is logged in (by checking localStorage token)
+  const token = localStorage.getItem("token");
+
   return (
     <section className="flex flex-col items-center justify-center text-center py-20 px-6 space-y-6">
       {/* Emoji + Heading */}
@@ -18,18 +20,31 @@ export default function Home() {
 
       {/* Call to action */}
       <div className="space-x-4">
-        <Link
-          to="/signup"
-          className="px-5 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
-        >
-          Get Started
-        </Link>
-        <Link
-          to="/signin"
-          className="px-5 py-2 bg-gray-200 text-gray-700 rounded-lg shadow hover:bg-gray-300 transition"
-        >
-          Sign In
-        </Link>
+        {token ? (
+          // If logged in → show Go to Tasks button
+          <Link
+            to="/tasks"
+            className="px-5 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition"
+          >
+            Go to Tasks ✅
+          </Link>
+        ) : (
+          // If not logged in → show signup & signin
+          <>
+            <Link
+              to="/signup"
+              className="px-5 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
+            >
+              Get Started
+            </Link>
+            <Link
+              to="/signin"
+              className="px-5 py-2 bg-gray-200 text-gray-700 rounded-lg shadow hover:bg-gray-300 transition"
+            >
+              Sign In
+            </Link>
+          </>
+        )}
       </div>
 
       {/* Fancy footer note */}
